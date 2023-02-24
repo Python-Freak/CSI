@@ -8,7 +8,7 @@ using namespace std;
 #define mod 1e9 + 7
 #define flash                          \
     ios_base ::sync_with_stdio(false); \
-    cin.tie(NULL);
+    cin.tie(NULL);21
 
 lld gcd(lld a, lld b)
 {
@@ -55,27 +55,17 @@ vector<pair<lld, lld>> pFactorization(lld n)
 void solve()
 {
     // MAIN LOGIC
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
-    for (int i = 0; i < n; i++)
+    int m, n;
+    cin >> m >> n;
+    int x = min(m, n);
+    if (x & 1)
     {
-        cin >> a[i];
+        cout << "Akshat" << endl;
     }
-
-    for (int i = 0; i < n; i++)
+    else
     {
-        min += i;
-        sum += a[i];
-        if (sum < min)
-        {
-            cout << "NO" << endl;
-            return;
-        }
+        cout << "Malvika" << endl;
     }
-    cout << "YES" << endl;
 }
 
 int main(int args, char *argc[])
@@ -83,7 +73,7 @@ int main(int args, char *argc[])
     // CODE HERE
     flash;
     int cases = 1;
-    bool MCASES = true;
+    bool MCASES = false;
     bool FILEMODE = false;
 
     if (FILEMODE)

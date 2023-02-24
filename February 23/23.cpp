@@ -57,25 +57,33 @@ void solve()
     // MAIN LOGIC
     int n;
     cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
-    for (int i = 0; i < n; i++)
+    string s;
+    cin >> s;
+    int k = 2;
+    unordered_map<string, int> m;
+    int max_ = 1;
+    for (int i = 0; i < s.length() - 1; i++)
     {
-        cin >> a[i];
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        min += i;
-        sum += a[i];
-        if (sum < min)
+        string sub = s.substr(i, k);
+        if (m.find(sub) == m.end())
         {
-            cout << "NO" << endl;
-            return;
+            m.insert({sub, 1});
+        }
+        else
+        {
+            int ccc = ++(m.find(sub)->second);
+            max_ = max(ccc, max_);
         }
     }
-    cout << "YES" << endl;
+    for (unordered_map<string, int>::iterator it = m.begin(); it != m.end(); it++)
+    {
+        // cout << it->first << " : " << it->second << endl;
+        if (it->second == max_)
+        {
+            cout << it->first << endl;
+            break;
+        }
+    }
 }
 
 int main(int args, char *argc[])
@@ -83,7 +91,7 @@ int main(int args, char *argc[])
     // CODE HERE
     flash;
     int cases = 1;
-    bool MCASES = true;
+    bool MCASES = false;
     bool FILEMODE = false;
 
     if (FILEMODE)

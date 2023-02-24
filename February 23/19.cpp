@@ -56,26 +56,24 @@ void solve()
 {
     // MAIN LOGIC
     int n;
+    string s;
+    int check[26] = {0};
     cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
-    for (int i = 0; i < n; i++)
+    cin >> s;
+    int res = 0;
+    for (char x : s)
     {
-        cin >> a[i];
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        min += i;
-        sum += a[i];
-        if (sum < min)
+        if (!check[x - 'A'])
         {
-            cout << "NO" << endl;
-            return;
+            res += 2;
+            check[x - 'A'] = 1;
+        }
+        else
+        {
+            res++;
         }
     }
-    cout << "YES" << endl;
+    cout << res << endl;
 }
 
 int main(int args, char *argc[])

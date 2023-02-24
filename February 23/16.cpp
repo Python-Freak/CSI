@@ -52,30 +52,42 @@ vector<pair<lld, lld>> pFactorization(lld n)
     return ans;
 }
 
+vector<string> keyboard = {"qwertyuiop", "asdfghjkl;", "zxcvbnm,./"};
+
 void solve()
 {
-    // MAIN LOGIC
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
-    for (int i = 0; i < n; i++)
+    char mode;
+    string target;
+    cin >> mode;
+    cin >> target;
+    int diff = 1;
+    if (mode == 'R')
     {
-        cin >> a[i];
+        diff = -1;
     }
-
-    for (int i = 0; i < n; i++)
+    int h = 0;
+    for (char x : target)
     {
-        min += i;
-        sum += a[i];
-        if (sum < min)
+        for (string k : keyboard)
         {
-            cout << "NO" << endl;
-            return;
+            for (int i = 0; i < k.length(); i++)
+            {
+                if (x == k.at(i))
+                {
+                    if (i != 0 && mode == 'R')
+                    {
+                        target[h] = k[i + diff];
+                    }
+                    if (i != (k.length() - 1) && mode == 'L')
+                    {
+                        target[h] = k[i + diff];
+                    }
+                }
+            }
         }
+        h++;
     }
-    cout << "YES" << endl;
+    cout << target;
 }
 
 int main(int args, char *argc[])
@@ -83,7 +95,7 @@ int main(int args, char *argc[])
     // CODE HERE
     flash;
     int cases = 1;
-    bool MCASES = true;
+    bool MCASES = false;
     bool FILEMODE = false;
 
     if (FILEMODE)

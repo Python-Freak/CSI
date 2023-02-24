@@ -55,27 +55,29 @@ vector<pair<lld, lld>> pFactorization(lld n)
 void solve()
 {
     // MAIN LOGIC
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-    }
+    int n, d, t;
+    cin >> n >> d;
+    int min = 0, jokes = 0;
 
     for (int i = 0; i < n; i++)
     {
-        min += i;
-        sum += a[i];
-        if (sum < min)
+        cin >> t;
+        min += t;
+        if (i < n - 1)
         {
-            cout << "NO" << endl;
-            return;
+            jokes += 2;
+            min += 10;
+        }
+        else
+        {
+            jokes += (d - min) / 5;
         }
     }
-    cout << "YES" << endl;
+
+    if (min > d)
+        cout << -1 << endl;
+    else
+        cout << jokes << endl;
 }
 
 int main(int args, char *argc[])
@@ -83,7 +85,7 @@ int main(int args, char *argc[])
     // CODE HERE
     flash;
     int cases = 1;
-    bool MCASES = true;
+    bool MCASES = false;
     bool FILEMODE = false;
 
     if (FILEMODE)

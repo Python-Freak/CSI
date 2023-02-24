@@ -57,25 +57,28 @@ void solve()
     // MAIN LOGIC
     int n;
     cin >> n;
-    vector<int> a(n);
-    lld sum = 0;
-    lld min = 0;
+    int odd = 0, even = 0;
+    arr(a, n);
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        min += i;
-        sum += a[i];
-        if (sum < min)
+        if (a[i] & 1)
         {
-            cout << "NO" << endl;
-            return;
+            odd++;
+        }
+        else
+        {
+            even++;
         }
     }
-    cout << "YES" << endl;
+    if (odd > even)
+    {
+        cout << even << endl;
+    }
+    else
+    {
+        cout << odd << endl;
+    }
 }
 
 int main(int args, char *argc[])
@@ -83,7 +86,7 @@ int main(int args, char *argc[])
     // CODE HERE
     flash;
     int cases = 1;
-    bool MCASES = true;
+    bool MCASES = false;
     bool FILEMODE = false;
 
     if (FILEMODE)
